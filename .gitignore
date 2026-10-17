@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+site/
+# what a notebook or a script writes next to itself, and local mirrors of Hub artefacts — re-fetched or re-written
+# on demand
+*.db
+*.parquet
+main_*.json
+ablation_*.json
+timing_*.json
+exploration_*.json
+.fastt-cache/

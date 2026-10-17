@@ -1,0 +1,17 @@
+\begin{table*}[t]
+    \centering
+    \caption{Per-member encoder and decoder time per utterance (VoxPopuli, 32 clips, batch size 1) at three decoding settings, with the WER on the timed clips. The encoder is run once; the decoder's share grows with the beam.}
+    \label{tab:clocks_voxpopuli} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lrrrrrrr}
+        \toprule
+         & \multicolumn{1}{c}{\textbf{}} & \multicolumn{3}{c}{\textbf{decode (ms)}} & \multicolumn{3}{c}{\textbf{WER}} \\ \cmidrule(lr){2-2} \cmidrule(lr){3-5} \cmidrule(lr){6-8}
+    \textbf{Member} & \textbf{encode (ms)} & \textbf{greedy} & \textbf{beam 5} & \textbf{beam 20} & \textbf{greedy} & \textbf{beam 5} & \textbf{beam 20} \\
+        \midrule
+        ESPnet Conformer-RNN-T & 9.1 & 35.8 & 306.1 & 3196.0 & 0.1993 & 0.1931 & 0.1907 \\
+        ESPnet Transformer & 6.6 & 0.2 & 614.0 & 686.9 & 0.2509 & 0.2140 & 0.2165 \\
+        data2vec-audio-base & 10.8 & 0.3 & 7.4 & 23.4 & 0.2042 & 0.2054 & 0.2042 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

@@ -1,0 +1,1 @@
+Encoding all three experts takes 36.6 ms per clip and is the same for every method; what differs is the decoding. Choosing from the encoders and decoding one expert saves 32 % of the decode-all time at greedy decoding, 86 % at beam width 5 and 70 % at beam width 20, and the two FASTT selectors take 1.5 and 9.7 µs per clip.

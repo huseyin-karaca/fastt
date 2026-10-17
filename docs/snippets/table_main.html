@@ -1,0 +1,33 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th>Method</th><th class="num">LibriSpeech</th><th class="num">VoxPopuli</th><th class="num">AMI (SDM)</th><th class="num">Earnings-22</th><th class="num">People&#x27;s Speech</th></tr>
+</thead>
+<tbody>
+<tr class="ft-gtitle"><td colspan="6">Reference</td></tr>
+<tr><td class="sys">Best-Single-Model</td><td class="num">0.0226</td><td class="num">0.1761<sup>†</sup></td><td class="num">0.6528<sup>†</sup></td><td class="num">0.4103<sup>†</sup></td><td class="num">0.4011<sup>†</sup></td></tr>
+<tr class="ft-gtitle"><td colspan="6">External baselines</td></tr>
+<tr><td class="sys">Random-Ensemble</td><td class="num">0.0251<sup>†</sup></td><td class="num">0.1967<sup>†</sup></td><td class="num">0.6710<sup>†</sup></td><td class="num">0.4242<sup>†</sup></td><td class="num">0.4102<sup>†</sup></td></tr>
+<tr><td class="sys">ROVER (weighted)</td><td class="num best">0.0214</td><td class="num">0.1737</td><td class="num">0.6667<sup>†</sup></td><td class="num">0.4151<sup>†</sup></td><td class="num">0.3894<sup>†</sup></td></tr>
+<tr><td class="sys">ROVER (confidence-weighted)</td><td class="num">0.0221</td><td class="num">0.1840<sup>†</sup></td><td class="num">0.6683<sup>†</sup></td><td class="num">0.4241<sup>†</sup></td><td class="num">0.3979<sup>†</sup></td></tr>
+<tr><td class="sys">CN-MBR</td><td class="num">0.0230</td><td class="num">0.1925<sup>†</sup></td><td class="num">0.6680<sup>†</sup></td><td class="num">0.4295<sup>†</sup></td><td class="num">0.4049<sup>†</sup></td></tr>
+<tr><td class="sys">Score-Fusion</td><td class="num">0.0303<sup>†</sup></td><td class="num">0.2066<sup>†</sup></td><td class="num">0.6796<sup>†</sup></td><td class="num">0.4280<sup>†</sup></td><td class="num">0.4247<sup>†</sup></td></tr>
+<tr><td class="sys">Hard-Selector (plain CE)</td><td class="num">0.0232<sup>†</sup></td><td class="num">0.1737</td><td class="num">0.6284<sup>†</sup></td><td class="num">0.3971<sup>†</sup></td><td class="num">0.3930<sup>†</sup></td></tr>
+<tr><td class="sys">Hard-Selector (cost-sensitive CE)</td><td class="num">0.0233<sup>†</sup></td><td class="num">0.1761<sup>†</sup></td><td class="num">0.6392<sup>†</sup></td><td class="num">0.4085<sup>†</sup></td><td class="num">0.3992<sup>†</sup></td></tr>
+<tr><td class="sys">QE-Router</td><td class="num">0.0237</td><td class="num">0.1795<sup>†</sup></td><td class="num">0.6272<sup>†</sup></td><td class="num">0.4056<sup>†</sup></td><td class="num">0.3924<sup>†</sup></td></tr>
+<tr class="ft-gtitle"><td colspan="6">Classical feature selection</td></tr>
+<tr><td class="sys">Raw XGBoost (AdaSTT)</td><td class="num">0.0224</td><td class="num">0.1745</td><td class="num">0.6274<sup>†</sup></td><td class="num">0.3926<sup>†</sup></td><td class="num">0.3879</td></tr>
+<tr><td class="sys">Raw SDT</td><td class="num">0.0226</td><td class="num">0.1761<sup>†</sup></td><td class="num">0.6528<sup>†</sup></td><td class="num">0.4096<sup>†</sup></td><td class="num">0.4011<sup>†</sup></td></tr>
+<tr><td class="sys">SelectKBest XGBoost</td><td class="num">0.0225</td><td class="num">0.1751</td><td class="num">0.6343<sup>†</sup></td><td class="num">0.3975<sup>†</sup></td><td class="num">0.3933<sup>†</sup></td></tr>
+<tr><td class="sys">SelectKBest SDT</td><td class="num">0.0226</td><td class="num">0.1761<sup>†</sup></td><td class="num">0.6528<sup>†</sup></td><td class="num">0.4096<sup>†</sup></td><td class="num">0.4011<sup>†</sup></td></tr>
+<tr class="ft-gtitle"><td colspan="6">FASTT</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Boosted</td><td class="num">0.0224</td><td class="num">0.1735</td><td class="num best">0.6221</td><td class="num">0.3901</td><td class="num best">0.3860</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Alternating</td><td class="num">0.0225</td><td class="num best">0.1733</td><td class="num">0.6240</td><td class="num best">0.3893</td><td class="num">0.3880<sup>†</sup></td></tr>
+<tr class="ft-gtitle"><td colspan="6">Oracles</td></tr>
+<tr><td class="sys">Oracle (no tolerance)</td><td class="num">0.0140</td><td class="num">0.1494</td><td class="num">0.5584</td><td class="num">0.3452</td><td class="num">0.3491</td></tr>
+<tr><td class="sys">Oracle (1 word tolerance)</td><td class="num">0.0184</td><td class="num">0.1566</td><td class="num">0.5790</td><td class="num">0.3561</td><td class="num">0.3602</td></tr>
+<tr><td class="sys">Oracle (2 word tolerance)</td><td class="num">0.0214</td><td class="num">0.1647</td><td class="num">0.6017</td><td class="num">0.3695</td><td class="num">0.3730</td></tr>
+</tbody>
+</table>
+<p class="ft-note">Test corpus WER, mean over the ten folds; the lowest of each corpus among the competing methods in bold (the oracles do not compete). †: the corpus's FASTT anchor, the better FASTT variant, is significantly better (paired 5×2 cv F test, p < 0.05). The tolerant oracles keep the best single model unless another expert saves more than one or two words.</p>
+</div>

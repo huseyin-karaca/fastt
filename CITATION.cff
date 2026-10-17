@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software or the data, please cite the paper below."
+title: "FASTT: reproducibility package"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/huseyin-karaca/fastt"
+url: "https://huseyin-karaca.github.io/fastt"
+authors:
+  - family-names: Karaca
+    given-names: Huseyin
+    affiliation: Bilkent University
+    orcid: "https://orcid.org/0000-0002-3408-7306"
+  - family-names: Namli
+    given-names: "A. Samil"
+    affiliation: Bilkent University
+    orcid: "https://orcid.org/0009-0000-3108-4508"
+  - family-names: Kozat
+    given-names: "Suleyman S."
+    affiliation: Bilkent University
+    orcid: "https://orcid.org/0000-0002-6488-3848"
+preferred-citation:
+  type: article
+  title: "FASTT: Feature-Adaptive Speech-to-Text Model Selection"
+  authors:
+    - family-names: Karaca
+      given-names: Huseyin
+    - family-names: Namli
+      given-names: "A. Samil"
+    - family-names: Kozat
+      given-names: "Suleyman S."
+  year: 2026
+  notes: "Under review at Expert Systems with Applications"

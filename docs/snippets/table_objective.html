@@ -1,0 +1,13 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th>Architecture</th><th class="num">CE</th><th class="num">E[WER]</th><th class="num">Δ</th><th class="num">p (F)</th></tr>
+</thead>
+<tbody>
+<tr><td class="sys">XGBoost</td><td class="num">0.6313</td><td class="num best">0.6274</td><td class="num">+0.39</td><td class="num">0.033</td></tr>
+<tr><td class="sys">FASTT-Boosted</td><td class="num">0.6280</td><td class="num best">0.6221</td><td class="num">+0.59</td><td class="num">0.006</td></tr>
+<tr><td class="sys">FASTT-Alternating</td><td class="num">0.6314</td><td class="num best">0.6240</td><td class="num">+0.74</td><td class="num">&lt;0.001</td></tr>
+</tbody>
+</table>
+<p class="ft-note">AMI (SDM): the same architecture, features, search budget, partition and 5×2 folds, trained with cross-entropy (CE) or with the expected-WER objective; corpus WER, mean over the ten folds, the better in bold. Δ: CE minus E[WER] in WER points; p: Alpaydın's combined 5×2 cv F test.</p>
+</div>

@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastt"
+dynamic = ["version"]
+description = "FASTT: feature-adaptive speech-to-text model selection — the reproducibility package"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Huseyin Karaca"}, {name = "A. Samil Namli"}, {name = "Suleyman S. Kozat"}]
+keywords = ["asr", "speech recognition", "model selection", "feature learning", "reproducibility"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Deliberately small: the experts need mutually incompatible stacks (🤗 Transformers, NeMo, ESPnet), and
+# notebooks/extract installs each group's own in its runtime (fastt.rebuild.INSTALL).
+dependencies = []
+
+[project.optional-dependencies]
+# levels 1 and 2: the search, the folds, the tests, the tables
+paper = ["numpy", "pandas", "scipy", "pyarrow", "huggingface_hub>=0.30", "datasets<4.0", "optuna", "xgboost",
+         "jiwer", "scikit-learn", "torch"]
+docs = ["mkdocs-material>=9.5"]
+
+[project.urls]
+Homepage = "https://huseyin-karaca.github.io/fastt"
+Repository = "https://github.com/huseyin-karaca/fastt"
+Dataset = "https://huggingface.co/datasets/huseyin-karaca/fastt"
+
+[tool.setuptools.dynamic]
+version = {attr = "fastt.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["fastt*"]

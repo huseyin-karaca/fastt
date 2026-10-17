@@ -1,0 +1,36 @@
+\begin{table*}[t]
+    \centering
+    \caption{Paired 5$\times$2 cv test against the corpus's FASTT anchor on WER: the Alpaydın combined $F$ statistic and its p-value.}
+    \label{tab:sig_wer} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lrrrrrrrrrr}
+        \toprule
+         & \multicolumn{2}{c}{\textbf{LibriSpeech}} & \multicolumn{2}{c}{\textbf{VoxPopuli}} & \multicolumn{2}{c}{\textbf{AMI (SDM)}} & \multicolumn{2}{c}{\textbf{Earnings-22}} & \multicolumn{2}{c}{\textbf{People's Speech}} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+    \textbf{Comparator} & $F$ & $p$ & $F$ & $p$ & $F$ & $p$ & $F$ & $p$ & $F$ & $p$ \\
+        \midrule
+        Best-Single-Model & 0.65 & 0.737 & 11.69 & 0.007 & 338.55 & $<$0.001 & 246.16 & $<$0.001 & 110.88 & $<$0.001 \\
+        \midrule
+        Random-Ensemble & 15.93 & 0.003 & 917.77 & $<$0.001 & 2937.72 & $<$0.001 & 298.60 & $<$0.001 & 2214.11 & $<$0.001 \\
+        ROVER (weighted) & 6.60 & 0.025 & 1.40 & 0.373 & 24.94 & 0.001 & 28.17 & $<$0.001 & 6.10 & 0.030 \\
+        ROVER (confidence-weighted) & 1.59 & 0.317 & 187.91 & $<$0.001 & 441.08 & $<$0.001 & 222.63 & $<$0.001 & 66.14 & $<$0.001 \\
+        CN-MBR & 3.97 & 0.071 & 370.64 & $<$0.001 & 2219.25 & $<$0.001 & 136.43 & $<$0.001 & 169.00 & $<$0.001 \\
+        Score-Fusion & 59.59 & $<$0.001 & 331.28 & $<$0.001 & 1642.88 & $<$0.001 & 281.29 & $<$0.001 & 962.80 & $<$0.001 \\
+        Hard-Selector (plain CE) & 17.21 & 0.003 & 0.87 & 0.604 & 15.10 & 0.004 & 36.18 & $<$0.001 & 30.00 & $<$0.001 \\
+        Hard-Selector (cost-sensitive CE) & 33.93 & $<$0.001 & 11.69 & 0.007 & 17.37 & 0.003 & 68.66 & $<$0.001 & 10.67 & 0.009 \\
+        QE-Router & 3.86 & 0.075 & 15.82 & 0.004 & 20.77 & 0.002 & 30.77 & $<$0.001 & 85.62 & $<$0.001 \\
+        \midrule
+        Raw XGBoost (AdaSTT) & 0.58 & 0.782 & 2.55 & 0.156 & 8.42 & 0.015 & 27.79 & $<$0.001 & 3.69 & 0.081 \\
+        Raw SDT & 0.65 & 0.737 & 11.69 & 0.007 & 338.55 & $<$0.001 & 168.06 & $<$0.001 & 110.88 & $<$0.001 \\
+        SelectKBest XGBoost & 0.65 & 0.739 & 4.51 & 0.055 & 46.78 & $<$0.001 & 6.38 & 0.027 & 20.72 & 0.002 \\
+        SelectKBest SDT & 0.65 & 0.737 & 11.69 & 0.007 & 338.55 & $<$0.001 & 168.06 & $<$0.001 & 110.88 & $<$0.001 \\
+        \midrule
+        FASTT-Boosted & - & - & 1.28 & 0.415 & - & - & 1.41 & 0.371 & - & - \\
+        FASTT-Alternating & 0.66 & 0.730 & - & - & 2.85 & 0.130 & - & - & 8.16 & 0.016 \\
+        \midrule
+        Oracle (no tolerance) & 444.73 & $<$0.001 & 543.47 & $<$0.001 & 3428.33 & $<$0.001 & 1687.26 & $<$0.001 & 3267.64 & $<$0.001 \\
+        Oracle (1 word tolerance) & 133.35 & $<$0.001 & 152.51 & $<$0.001 & 3371.26 & $<$0.001 & 1033.10 & $<$0.001 & 1765.45 & $<$0.001 \\
+        Oracle (2 word tolerance) & 3.98 & 0.070 & 56.24 & $<$0.001 & 486.88 & $<$0.001 & 306.82 & $<$0.001 & 763.69 & $<$0.001 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

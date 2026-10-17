@@ -1,0 +1,25 @@
+\begin{table*}[t]
+    \centering
+    \caption{Ablation of the feature transformation: best validation corpus WER per transform in the hyperparameter exploration (same members, features and partition as the main search; 15--40 configurations per cell). Bold: best transform in the row. Underlined: the transform the main search selected for Table~\ref{tab:main_merged} under its budget of 10 configurations. The two differ where the budget landed on a transform the richer search ranks lower.}
+    \label{tab:ablation_transform} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lccccc}
+        \toprule
+        \textbf{Method} & \textbf{Raw} & \textbf{Diag.} & \textbf{Linear} & \textbf{Low-rank} & \textbf{Nonlin.} \\
+        \midrule
+        \multicolumn{6}{l}{\textit{VoxPopuli}} \\
+        FASTT-Boosted & \textbf{0.1767} & 0.1770 & 0.1770 & \underline{0.1774} & 0.1773 \\
+        FASTT-Alternating & 0.1763 & \textbf{0.1762} & 0.1764 & 0.1774 & \underline{0.1773} \\
+        \midrule \multicolumn{6}{l}{\textit{AMI (SDM)}} \\
+        FASTT-Boosted & \underline{\textbf{0.6184}} & 0.6243 & 0.6230 & 0.6244 & 0.6219 \\
+        FASTT-Alternating & 0.6228 & \underline{\textbf{0.6197}} & 0.6221 & 0.6218 & 0.6213 \\
+        \midrule \multicolumn{6}{l}{\textit{Earnings-22}} \\
+        FASTT-Boosted & 0.4002 & \underline{0.4187} & \textbf{0.3992} & 0.3998 & 0.4003 \\
+        FASTT-Alternating & \underline{0.4044} & 0.4025 & \textbf{0.4010} & 0.4016 & 0.4022 \\
+        \midrule \multicolumn{6}{l}{\textit{People's Speech}} \\
+        FASTT-Boosted & \underline{\textbf{0.3908}} & 0.3925 & 0.3920 & 0.3935 & 0.3941 \\
+        FASTT-Alternating & 0.3912 & 0.3908 & \underline{\textbf{0.3907}} & 0.3909 & 0.3916 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

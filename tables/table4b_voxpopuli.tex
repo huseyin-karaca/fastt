@@ -1,0 +1,34 @@
+\begin{table*}[t]
+    \centering
+    \caption{Cost per utterance of the two ensemble strategies (VoxPopuli, 32 clips, batch size 1). Every strategy encodes all members once; a fusion system then decodes every member, FASTT decodes only the selected one. `saved' is the fraction of the decode-all time FASTT avoids; the floor always decodes the cheapest member.}
+    \label{tab:systems_voxpopuli} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lrrrrrr}
+        \toprule
+        \textbf{System} & \textbf{encode (ms)} & \textbf{decode (ms)} & \textbf{selector ($\mu$s)} & \textbf{total (ms)} & \textbf{$\times$ decode-all} & \textbf{saved} \\
+        \midrule
+        \multicolumn{7}{l}{\textit{Decoding: greedy}} \\
+        \quad ESPnet Conformer-RNN-T & 10.1 & 35.8 & --- & 45.9 & 0.63 & --- \\
+        \quad ESPnet Transformer & 7.0 & 0.2 & --- & 7.1 & 0.10 & --- \\
+        \quad data2vec-audio-base & 19.5 & 0.3 & --- & 19.8 & 0.27 & --- \\
+        Decode all, then choose (fusion) & 36.6 & 36.3 & 1.5 & 72.9 & 1.00 & --- \\
+        Choose from encoders, decode one (FASTT) & 36.6 & 12.8 & 1.5 & \textbf{49.4} & 0.68 & 32\% \\
+        Cheapest decoder only (floor) & 36.6 & 0.2 & 1.5 & 36.8 & 0.50 & --- \\
+        \midrule \multicolumn{7}{l}{\textit{Decoding: beam 5}} \\
+        \quad ESPnet Conformer-RNN-T & 8.4 & 306.1 & --- & 314.5 & 0.33 & --- \\
+        \quad ESPnet Transformer & 6.3 & 614.0 & --- & 620.3 & 0.65 & --- \\
+        \quad data2vec-audio-base & 6.5 & 7.4 & --- & 13.8 & 0.01 & --- \\
+        Decode all, then choose (fusion) & 21.2 & 927.5 & 1.5 & 948.7 & 1.00 & --- \\
+        Choose from encoders, decode one (FASTT) & 21.2 & 112.2 & 1.5 & \textbf{133.4} & 0.14 & 86\% \\
+        Cheapest decoder only (floor) & 21.2 & 7.4 & 1.5 & 28.6 & 0.03 & --- \\
+        \midrule \multicolumn{7}{l}{\textit{Decoding: beam 20}} \\
+        \quad ESPnet Conformer-RNN-T & 8.8 & 3196.0 & --- & 3204.8 & 0.82 & --- \\
+        \quad ESPnet Transformer & 6.4 & 686.9 & --- & 693.3 & 0.18 & --- \\
+        \quad data2vec-audio-base & 6.5 & 23.4 & --- & 29.8 & 0.01 & --- \\
+        Decode all, then choose (fusion) & 21.7 & 3906.2 & 1.5 & 3927.9 & 1.00 & --- \\
+        Choose from encoders, decode one (FASTT) & 21.7 & 1136.4 & 1.5 & \textbf{1158.0} & 0.29 & 70\% \\
+        Cheapest decoder only (floor) & 21.7 & 23.4 & 1.5 & 45.0 & 0.01 & --- \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

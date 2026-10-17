@@ -1,0 +1,45 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th>Method</th><th>Parameter</th><th>Search space</th></tr>
+</thead>
+<tbody>
+<tr><td class="sys">SDT</td><td>Transform ℓ₂ (λ₂)</td><td><code>1e-05, 0.001, 0.1</code></td></tr>
+<tr><td class="sys"></td><td>Bottleneck ratio</td><td><code>0.05, 0.15, 0.5</code></td></tr>
+<tr><td class="sys"></td><td>Boosting rounds</td><td><code>1, 2, 4, 6</code></td></tr>
+<tr><td class="sys"></td><td>Trees per round</td><td><code>4, 8, 16, 24</code></td></tr>
+<tr><td class="sys"></td><td>SDT ℓ₁ (λ)</td><td><code>1e-06, 0.0001, 0.01, 1.0</code></td></tr>
+<tr><td class="sys"></td><td>Weight decay</td><td><code>1e-07, 1e-05, 0.001, 0.1</code></td></tr>
+<tr><td class="sys"></td><td>Batch size</td><td><code>128, 512, 2048</code></td></tr>
+<tr><td class="sys"></td><td>Early-stopping patience</td><td><code>10, 20, 40</code></td></tr>
+<tr class="ft-group"><td class="sys">XGBoost</td><td>Alternating iterations</td><td><code>1, 3, 6, 12</code></td></tr>
+<tr><td class="sys"></td><td>Transform learning rate</td><td><code>0.0001, 0.001, 0.01</code></td></tr>
+<tr><td class="sys"></td><td>Transform steps</td><td><code>25, 100, 400</code></td></tr>
+<tr><td class="sys"></td><td>Surrogate learning rate</td><td><code>0.001, 0.01, 0.1</code></td></tr>
+<tr><td class="sys"></td><td>Surrogate steps</td><td><code>50, 200, 400</code></td></tr>
+<tr><td class="sys"></td><td>Transform ℓ₁ (λ₁)</td><td><code>1e-05, 0.001, 0.1</code></td></tr>
+<tr><td class="sys"></td><td>Transform ℓ₂ (λ₂)</td><td><code>1e-05, 0.001, 0.1</code></td></tr>
+<tr><td class="sys"></td><td>Learning rate</td><td><code>0.01, 0.03, 0.1, 0.3</code></td></tr>
+<tr><td class="sys"></td><td>Max depth</td><td><code>3, 5, 8, 12</code></td></tr>
+<tr><td class="sys"></td><td>Subsample</td><td><code>0.6, 0.8, 1.0</code></td></tr>
+<tr><td class="sys"></td><td>Column subsample</td><td><code>0.1, 0.3, 0.6, 1.0</code></td></tr>
+<tr><td class="sys"></td><td>Bottleneck output ratio</td><td><code>0.1, 0.3, 1.0</code></td></tr>
+<tr class="ft-group"><td class="sys">SelectKBest</td><td>Num. features (k)</td><td><code>32, 128, 512, 2048</code></td></tr>
+<tr class="ft-group"><td class="sys">ROVER (weighted)</td><td>Vote weighting</td><td><code>inverse_wer, log_odds, uniform</code></td></tr>
+<tr><td class="sys"></td><td>Null-arc penalty</td><td><code>0.25, 0.5</code></td></tr>
+<tr class="ft-group"><td class="sys">ROVER (confidence-weighted)</td><td>Smoothing (α)</td><td><code>0.0, 0.25</code></td></tr>
+<tr><td class="sys"></td><td>Vote weighting</td><td><code>inverse_wer, log_odds, uniform</code></td></tr>
+<tr><td class="sys"></td><td>Weight by confidence</td><td><code>False, True</code></td></tr>
+<tr class="ft-group"><td class="sys">CN-MBR</td><td>Use confidence</td><td><code>False, True</code></td></tr>
+<tr><td class="sys"></td><td>Confidence source</td><td><code>blend, cn, probe</code></td></tr>
+<tr class="ft-group"><td class="sys">Score-Fusion</td><td>Null-arc penalty</td><td><code>0.25, 1.0, 4.0</code></td></tr>
+<tr class="ft-group"><td class="sys">Hard-Selector (plain CE)</td><td>Smoothing (α)</td><td><code>0.0001, 0.001, …, 1000 (8 values)</code></td></tr>
+<tr class="ft-group"><td class="sys">Hard-Selector (cost-sensitive CE)</td><td>Smoothing (α)</td><td><code>100.0, 1000.0</code></td></tr>
+<tr><td class="sys"></td><td>Objective weighting</td><td><code>length, uniform</code></td></tr>
+<tr class="ft-group"><td class="sys">QE-Router</td><td>Regression target</td><td><code>errors, wer</code></td></tr>
+<tr><td class="sys"></td><td>Num. α values</td><td><code>8, 16, 40</code></td></tr>
+<tr><td class="sys"></td><td>Standardize features</td><td><code>False, True</code></td></tr>
+</tbody>
+</table>
+<p class="ft-note">Every learned method draws ten configurations at random from its space, with the same sampler and seed, on the corpus's hold-out. SDT and XGBoost stand for the FASTT, raw and SelectKBest variants of each base learner, which share their grids; the feature transformation is the subject of the ablation.</p>
+</div>

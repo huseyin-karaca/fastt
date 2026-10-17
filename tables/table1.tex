@@ -1,0 +1,19 @@
+\begin{table*}[t]
+    \centering
+    \caption{Dataset statistics. Clips are those with non-empty audio and reference; the hyperparameter hold-out (25\%) is disjoint from the 5$\times$2 cv evaluation rows.}
+    \label{tab:datasets} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lccccc}
+        \toprule
+        \textbf{Statistic} & \textbf{LibriSpeech} & \textbf{VoxPopuli} & \textbf{AMI (SDM)} & \textbf{Earnings-22} & \textbf{People's Speech} \\
+        \midrule
+        Total clips & 11,126 & 9,678 & 41,641 & 12,088 & 14,299 \\
+        Features & 3,329 & 1,793 & 2,049 & 2,305 & 2,049 \\
+        Hyperparameter hold-out & 2,782 & 2,420 & 10,410 & 3,022 & 3,575 \\
+        Evaluation rows (5x2) & 8,344 & 7,258 & 31,231 & 9,066 & 10,724 \\
+        Train size (per fold) & 4,172 & 3,629 & 15,615 & 4,533 & 5,362 \\
+        Test size (per fold) & 4,172 & 3,629 & 15,616 & 4,533 & 5,362 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

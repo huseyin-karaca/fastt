@@ -1,0 +1,16 @@
+\begin{table}[t]
+    \centering
+    \caption{Ablation of the training objective on AMI (SDM): the same architecture, features, search budget, partition and 5$\times$2 folds, trained with cross-entropy (CE) or the expected-WER objective (E[WER]) and evaluated on corpus WER; mean over the 10 folds, better in bold. $\Delta$: CE minus E[WER] in WER points; $p$ is Alpaydın's combined 5$\times$2 cv $F$ test. Every difference is significant at $p<0.05$.}
+    \label{tab:ablation_loss_ami_sdm} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lrrrr}
+        \toprule
+        \textbf{Architecture} & \textbf{CE} & \textbf{E[WER]} & \textbf{$\Delta$} & \textbf{p (F)} \\
+        \midrule
+        XGBoost & 0.6313 & \textbf{0.6274} & +0.39 & 0.033 \\
+        FASTT-Boosted & 0.6280 & \textbf{0.6221} & +0.59 & 0.006 \\
+        FASTT-Alternating & 0.6314 & \textbf{0.6240} & +0.74 & $<$0.001 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table}

@@ -1,0 +1,14 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th></th><th></th><th colspan="3" class="grp">decode (ms)</th><th colspan="3" class="grp">WER</th></tr>
+<tr><th>Member</th><th class="num">encode (ms)</th><th class="num">greedy</th><th class="num">beam 5</th><th class="num">beam 20</th><th class="num">greedy</th><th class="num">beam 5</th><th class="num">beam 20</th></tr>
+</thead>
+<tbody>
+<tr><td class="sys">ESPnet Conformer-RNN-T</td><td class="num">9.1</td><td class="num">35.8</td><td class="num">306.1</td><td class="num">3196.0</td><td class="num">0.1993</td><td class="num">0.1931</td><td class="num">0.1907</td></tr>
+<tr><td class="sys">ESPnet Transformer</td><td class="num">6.6</td><td class="num">0.2</td><td class="num">614.0</td><td class="num">686.9</td><td class="num">0.2509</td><td class="num">0.2140</td><td class="num">0.2165</td></tr>
+<tr><td class="sys">data2vec-audio-base</td><td class="num">10.8</td><td class="num">0.3</td><td class="num">7.4</td><td class="num">23.4</td><td class="num">0.2042</td><td class="num">0.2054</td><td class="num">0.2042</td></tr>
+</tbody>
+</table>
+<p class="ft-note">Per expert: the encoder once, and its decoder at three decoding settings, with the WER on the timed clips.</p>
+</div>

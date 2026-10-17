@@ -1,0 +1,37 @@
+\begin{table*}[t]
+    \centering
+    \caption{Test corpus WER, share of the oracle gap closed (GC, \%), and selection accuracy (Acc, \%), 5$\times$2 cv mean over the 10 folds. Bold: best per dataset and metric among the competing arms (oracles excluded). $^{\dagger}$: the corpus's FASTT anchor (the better FASTT arm) is significantly better at $p<0.05$ (paired 5$\times$2 cv $F$ test). Fusion arms produce a new hypothesis and have no accuracy.}
+    \label{tab:main_merged} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{lrrrrrrrrrrrrrrr}
+        \toprule
+         & \multicolumn{3}{c}{\textbf{LibriSpeech}} & \multicolumn{3}{c}{\textbf{VoxPopuli}} & \multicolumn{3}{c}{\textbf{AMI (SDM)}} & \multicolumn{3}{c}{\textbf{Earnings-22}} & \multicolumn{3}{c}{\textbf{People's Speech}} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} \cmidrule(lr){11-13} \cmidrule(lr){14-16}
+    \textbf{Method} & \textbf{WER} & \textbf{GC} & \textbf{Acc} & \textbf{WER} & \textbf{GC} & \textbf{Acc} & \textbf{WER} & \textbf{GC} & \textbf{Acc} & \textbf{WER} & \textbf{GC} & \textbf{Acc} & \textbf{WER} & \textbf{GC} & \textbf{Acc} \\
+        \midrule
+        \multicolumn{16}{l}{\textit{Reference}} \\
+        Best-Single-Model & 0.0226 & 0.0 & \textbf{88.1} & 0.1761$^{\dagger}$ & 0.0 & 63.8 & 0.6528$^{\dagger}$ & 0.0 & 66.4 & 0.4103$^{\dagger}$ & 0.0 & 53.2 & 0.4011$^{\dagger}$ & 0.0 & 53.0 \\
+        \midrule \multicolumn{16}{l}{\textit{External baselines}} \\
+        Random-Ensemble & 0.0251$^{\dagger}$ & -29.5 & 86.2 & 0.1967$^{\dagger}$ & -76.9 & 50.3 & 0.6710$^{\dagger}$ & -19.3 & 61.2 & 0.4242$^{\dagger}$ & -21.4 & 46.8 & 0.4102$^{\dagger}$ & -17.3 & 49.3 \\
+        ROVER (weighted) & \textbf{0.0214} & \textbf{13.8} & --- & 0.1737 & 9.1 & --- & 0.6667$^{\dagger}$ & -14.7 & --- & 0.4151$^{\dagger}$ & -7.3 & --- & 0.3894$^{\dagger}$ & 22.4 & --- \\
+        ROVER (confidence-weighted) & 0.0221 & 4.6 & --- & 0.1840$^{\dagger}$ & -29.5 & --- & 0.6683$^{\dagger}$ & -16.4 & --- & 0.4241$^{\dagger}$ & -21.2 & --- & 0.3979$^{\dagger}$ & 6.3 & --- \\
+        CN-MBR & 0.0230 & -5.7 & \textbf{88.1} & 0.1925$^{\dagger}$ & -61.3 & 54.9 & 0.6680$^{\dagger}$ & -16.2 & 57.4 & 0.4295$^{\dagger}$ & -29.5 & 47.1 & 0.4049$^{\dagger}$ & -7.3 & 51.5 \\
+        Score-Fusion & 0.0303$^{\dagger}$ & -90.9 & 82.8 & 0.2066$^{\dagger}$ & -114.2 & 45.0 & 0.6796$^{\dagger}$ & -28.4 & 60.0 & 0.4280$^{\dagger}$ & -27.2 & 44.9 & 0.4247$^{\dagger}$ & -45.3 & 45.6 \\
+        Hard-Selector (plain CE) & 0.0232$^{\dagger}$ & -7.6 & 87.1 & 0.1737 & 8.9 & 66.0 & 0.6284$^{\dagger}$ & 25.9 & 71.3 & 0.3971$^{\dagger}$ & 20.3 & 57.2 & 0.3930$^{\dagger}$ & 15.7 & 55.4 \\
+        Hard-Selector (cost-sensitive CE) & 0.0233$^{\dagger}$ & -8.8 & 86.9 & 0.1761$^{\dagger}$ & 0.0 & 63.8 & 0.6392$^{\dagger}$ & 14.4 & 69.3 & 0.4085$^{\dagger}$ & 2.8 & 55.2 & 0.3992$^{\dagger}$ & 3.8 & 53.1 \\
+        QE-Router & 0.0237 & -13.7 & 86.9 & 0.1795$^{\dagger}$ & -12.6 & 60.2 & 0.6272$^{\dagger}$ & 27.1 & 70.6 & 0.4056$^{\dagger}$ & 7.2 & 54.1 & 0.3924$^{\dagger}$ & 16.9 & 57.5 \\
+        \midrule \multicolumn{16}{l}{\textit{Classical feature selection}} \\
+        Raw XGBoost (AdaSTT) & 0.0224 & 1.7 & \textbf{88.1} & 0.1745 & 6.2 & 65.3 & 0.6274$^{\dagger}$ & 26.9 & 72.2 & 0.3926$^{\dagger}$ & 27.2 & 60.2 & 0.3879 & 25.5 & 60.6 \\
+        Raw SDT & 0.0226 & 0.0 & \textbf{88.1} & 0.1761$^{\dagger}$ & 0.0 & 63.8 & 0.6528$^{\dagger}$ & 0.0 & 66.4 & 0.4096$^{\dagger}$ & 1.1 & 54.7 & 0.4011$^{\dagger}$ & 0.0 & 53.0 \\
+        SelectKBest XGBoost & 0.0225 & 0.3 & 88.0 & 0.1751 & 3.8 & 64.7 & 0.6343$^{\dagger}$ & 19.5 & 70.4 & 0.3975$^{\dagger}$ & 19.6 & 58.8 & 0.3933$^{\dagger}$ & 15.0 & 58.2 \\
+        SelectKBest SDT & 0.0226 & 0.0 & \textbf{88.1} & 0.1761$^{\dagger}$ & 0.0 & 63.8 & 0.6528$^{\dagger}$ & 0.0 & 66.4 & 0.4096$^{\dagger}$ & 1.1 & 54.7 & 0.4011$^{\dagger}$ & 0.0 & 53.0 \\
+        \midrule \multicolumn{16}{l}{\textit{FASTT}} \\
+        FASTT-Boosted & 0.0224 & 1.5 & 88.0 & 0.1735 & 10.0 & 65.9 & \textbf{0.6221} & \textbf{32.4} & \textbf{73.3} & 0.3901 & 31.0 & 60.9 & \textbf{0.3860} & \textbf{29.0} & \textbf{61.9} \\
+        FASTT-Alternating & 0.0225 & 0.1 & 87.9 & \textbf{0.1733} & \textbf{10.5} & \textbf{66.3} & 0.6240 & 30.5 & 72.9 & \textbf{0.3893} & \textbf{32.2} & \textbf{61.7} & 0.3880$^{\dagger}$ & 25.3 & 60.8 \\
+        \midrule \multicolumn{16}{l}{\textit{Oracles}} \\
+        Oracle (no tolerance) & 0.0140 & 100.0 & 100.0 & 0.1494 & 100.0 & 100.0 & 0.5584 & 100.0 & 100.0 & 0.3452 & 100.0 & 100.0 & 0.3491 & 100.0 & 100.0 \\
+        Oracle (1 word tolerance) & 0.0184 & 48.9 & 91.6 & 0.1566 & 73.1 & 81.7 & 0.5790 & 78.2 & 84.4 & 0.3561 & 83.3 & 80.5 & 0.3602 & 78.7 & 77.7 \\
+        Oracle (2 word tolerance) & 0.0214 & 13.5 & 88.7 & 0.1647 & 42.6 & 71.3 & 0.6017 & 54.1 & 75.7 & 0.3695 & 62.7 & 68.4 & 0.3730 & 54.1 & 64.8 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}

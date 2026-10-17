@@ -1,0 +1,34 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th></th><th colspan="2" class="grp">LibriSpeech</th><th colspan="2" class="grp">VoxPopuli</th><th colspan="2" class="grp">AMI (SDM)</th><th colspan="2" class="grp">Earnings-22</th><th colspan="2" class="grp">People&#x27;s Speech</th></tr>
+<tr><th>Method</th><th class="num">GC</th><th class="num">Acc</th><th class="num">GC</th><th class="num">Acc</th><th class="num">GC</th><th class="num">Acc</th><th class="num">GC</th><th class="num">Acc</th><th class="num">GC</th><th class="num">Acc</th></tr>
+</thead>
+<tbody>
+<tr class="ft-gtitle"><td colspan="11">Reference</td></tr>
+<tr><td class="sys">Best-Single-Model</td><td class="num">0.0</td><td class="num best">88.1</td><td class="num">0.0</td><td class="num">63.8</td><td class="num">0.0</td><td class="num">66.4</td><td class="num">0.0</td><td class="num">53.2</td><td class="num">0.0</td><td class="num">53.0</td></tr>
+<tr class="ft-gtitle"><td colspan="11">External baselines</td></tr>
+<tr><td class="sys">Random-Ensemble</td><td class="num">−29.5</td><td class="num">86.2</td><td class="num">−76.9</td><td class="num">50.3</td><td class="num">−19.3</td><td class="num">61.2</td><td class="num">−21.4</td><td class="num">46.8</td><td class="num">−17.3</td><td class="num">49.3</td></tr>
+<tr><td class="sys">ROVER (weighted)</td><td class="num best">13.8</td><td class="num">—</td><td class="num">9.1</td><td class="num">—</td><td class="num">−14.7</td><td class="num">—</td><td class="num">−7.3</td><td class="num">—</td><td class="num">22.4</td><td class="num">—</td></tr>
+<tr><td class="sys">ROVER (confidence-weighted)</td><td class="num">4.6</td><td class="num">—</td><td class="num">−29.5</td><td class="num">—</td><td class="num">−16.4</td><td class="num">—</td><td class="num">−21.2</td><td class="num">—</td><td class="num">6.3</td><td class="num">—</td></tr>
+<tr><td class="sys">CN-MBR</td><td class="num">−5.7</td><td class="num best">88.1</td><td class="num">−61.3</td><td class="num">54.9</td><td class="num">−16.2</td><td class="num">57.4</td><td class="num">−29.5</td><td class="num">47.1</td><td class="num">−7.3</td><td class="num">51.5</td></tr>
+<tr><td class="sys">Score-Fusion</td><td class="num">−90.9</td><td class="num">82.8</td><td class="num">−114.2</td><td class="num">45.0</td><td class="num">−28.4</td><td class="num">60.0</td><td class="num">−27.2</td><td class="num">44.9</td><td class="num">−45.3</td><td class="num">45.6</td></tr>
+<tr><td class="sys">Hard-Selector (plain CE)</td><td class="num">−7.6</td><td class="num">87.1</td><td class="num">8.9</td><td class="num">66.0</td><td class="num">25.9</td><td class="num">71.3</td><td class="num">20.3</td><td class="num">57.2</td><td class="num">15.7</td><td class="num">55.4</td></tr>
+<tr><td class="sys">Hard-Selector (cost-sensitive CE)</td><td class="num">−8.8</td><td class="num">86.9</td><td class="num">0.0</td><td class="num">63.8</td><td class="num">14.4</td><td class="num">69.3</td><td class="num">2.8</td><td class="num">55.2</td><td class="num">3.8</td><td class="num">53.1</td></tr>
+<tr><td class="sys">QE-Router</td><td class="num">−13.7</td><td class="num">86.9</td><td class="num">−12.6</td><td class="num">60.2</td><td class="num">27.1</td><td class="num">70.6</td><td class="num">7.2</td><td class="num">54.1</td><td class="num">16.9</td><td class="num">57.5</td></tr>
+<tr class="ft-gtitle"><td colspan="11">Classical feature selection</td></tr>
+<tr><td class="sys">Raw XGBoost (AdaSTT)</td><td class="num">1.7</td><td class="num best">88.1</td><td class="num">6.2</td><td class="num">65.3</td><td class="num">26.9</td><td class="num">72.2</td><td class="num">27.2</td><td class="num">60.2</td><td class="num">25.5</td><td class="num">60.6</td></tr>
+<tr><td class="sys">Raw SDT</td><td class="num">0.0</td><td class="num best">88.1</td><td class="num">0.0</td><td class="num">63.8</td><td class="num">0.0</td><td class="num">66.4</td><td class="num">1.1</td><td class="num">54.7</td><td class="num">0.0</td><td class="num">53.0</td></tr>
+<tr><td class="sys">SelectKBest XGBoost</td><td class="num">0.3</td><td class="num">88.0</td><td class="num">3.8</td><td class="num">64.7</td><td class="num">19.5</td><td class="num">70.4</td><td class="num">19.6</td><td class="num">58.8</td><td class="num">15.0</td><td class="num">58.2</td></tr>
+<tr><td class="sys">SelectKBest SDT</td><td class="num">0.0</td><td class="num best">88.1</td><td class="num">0.0</td><td class="num">63.8</td><td class="num">0.0</td><td class="num">66.4</td><td class="num">1.1</td><td class="num">54.7</td><td class="num">0.0</td><td class="num">53.0</td></tr>
+<tr class="ft-gtitle"><td colspan="11">FASTT</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Boosted</td><td class="num">1.5</td><td class="num">88.0</td><td class="num">10.0</td><td class="num">65.9</td><td class="num best">32.4</td><td class="num best">73.3</td><td class="num">31.0</td><td class="num">60.9</td><td class="num best">29.0</td><td class="num best">61.9</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Alternating</td><td class="num">0.1</td><td class="num">87.9</td><td class="num best">10.5</td><td class="num best">66.3</td><td class="num">30.5</td><td class="num">72.9</td><td class="num best">32.2</td><td class="num best">61.7</td><td class="num">25.3</td><td class="num">60.8</td></tr>
+<tr class="ft-gtitle"><td colspan="11">Oracles</td></tr>
+<tr><td class="sys">Oracle (no tolerance)</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td></tr>
+<tr><td class="sys">Oracle (1 word tolerance)</td><td class="num">48.9</td><td class="num">91.6</td><td class="num">73.1</td><td class="num">81.7</td><td class="num">78.2</td><td class="num">84.4</td><td class="num">83.3</td><td class="num">80.5</td><td class="num">78.7</td><td class="num">77.7</td></tr>
+<tr><td class="sys">Oracle (2 word tolerance)</td><td class="num">13.5</td><td class="num">88.7</td><td class="num">42.6</td><td class="num">71.3</td><td class="num">54.1</td><td class="num">75.7</td><td class="num">62.7</td><td class="num">68.4</td><td class="num">54.1</td><td class="num">64.8</td></tr>
+</tbody>
+</table>
+<p class="ft-note">GC: the share of the gap between the best single model and the per-utterance oracle that a method closes; negative when it is worse than the best single model. Acc: the share of utterances routed to an expert with the lowest WER on it. Both in %; the fusion methods write a new transcript and have no Acc.</p>
+</div>

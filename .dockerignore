@@ -1,0 +1,7 @@
+.git
+.github
+site
+docs
+overrides
+**/__pycache__
+**/.ipynb_checkpoints

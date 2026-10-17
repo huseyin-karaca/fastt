@@ -1,0 +1,37 @@
+<div class="ft-table" markdown="0">
+<table>
+<thead>
+<tr><th>Method</th><th class="num">encode (ms)</th><th class="num">decode (ms)</th><th class="num">selector (µs)</th><th class="num">end-to-end (ms)</th><th class="num">train selector (s)</th></tr>
+</thead>
+<tbody>
+<tr class="ft-gtitle"><td colspan="6">Members</td></tr>
+<tr><td class="sys">ESPnet Conformer-RNN-T</td><td class="num">10.1</td><td class="num">35.8</td><td class="num">—</td><td class="num">45.9</td><td class="num">—</td></tr>
+<tr><td class="sys">ESPnet Transformer</td><td class="num">7.0</td><td class="num">0.2</td><td class="num">—</td><td class="num">7.1</td><td class="num">—</td></tr>
+<tr><td class="sys">data2vec-audio-base</td><td class="num">19.5</td><td class="num">0.3</td><td class="num">—</td><td class="num">19.8</td><td class="num">—</td></tr>
+<tr class="ft-gtitle"><td colspan="6">Reference</td></tr>
+<tr><td class="sys">Best-Single-Model</td><td class="num">36.6</td><td class="num">35.8</td><td class="num">—</td><td class="num">72.5</td><td class="num">—</td></tr>
+<tr class="ft-gtitle"><td colspan="6">External baselines</td></tr>
+<tr><td class="sys">Random-Ensemble</td><td class="num">36.6</td><td class="num">12.1</td><td class="num">—</td><td class="num">48.8</td><td class="num">—</td></tr>
+<tr><td class="sys">ROVER (weighted)</td><td class="num">36.6</td><td class="num">36.3</td><td class="num">225.6</td><td class="num">73.1</td><td class="num">0.00</td></tr>
+<tr><td class="sys">ROVER (confidence-weighted)</td><td class="num">36.6</td><td class="num">36.3</td><td class="num">42.9</td><td class="num">73.0</td><td class="num">0.00</td></tr>
+<tr><td class="sys">CN-MBR</td><td class="num">36.6</td><td class="num">20.1</td><td class="num">46.4</td><td class="num">56.7</td><td class="num">2.63</td></tr>
+<tr><td class="sys">Score-Fusion</td><td class="num">36.6</td><td class="num">11.6</td><td class="num">22.9</td><td class="num">48.2</td><td class="num">0.00</td></tr>
+<tr><td class="sys">Hard-Selector (plain CE)</td><td class="num">36.6</td><td class="num">29.6</td><td class="num">0.5</td><td class="num">66.2</td><td class="num">0.09</td></tr>
+<tr><td class="sys">Hard-Selector (cost-sensitive CE)</td><td class="num">36.6</td><td class="num">35.8</td><td class="num">0.5</td><td class="num">72.5</td><td class="num">0.03</td></tr>
+<tr><td class="sys">QE-Router</td><td class="num">36.6</td><td class="num">15.3</td><td class="num">0.7</td><td class="num">51.9</td><td class="num">2.63</td></tr>
+<tr class="ft-gtitle"><td colspan="6">Classical feature selection</td></tr>
+<tr><td class="sys">Raw XGBoost (AdaSTT)</td><td class="num">36.6</td><td class="num">21.8</td><td class="num">5.8</td><td class="num">58.5</td><td class="num">10.52</td></tr>
+<tr><td class="sys">Raw SDT</td><td class="num">36.6</td><td class="num">35.8</td><td class="num">1.3</td><td class="num">72.5</td><td class="num">7.54</td></tr>
+<tr><td class="sys">SelectKBest XGBoost</td><td class="num">36.6</td><td class="num">26.4</td><td class="num">5.7</td><td class="num">63.0</td><td class="num">5.24</td></tr>
+<tr><td class="sys">SelectKBest SDT</td><td class="num">36.6</td><td class="num">35.8</td><td class="num">0.5</td><td class="num">72.5</td><td class="num">1.64</td></tr>
+<tr class="ft-gtitle"><td colspan="6">FASTT</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Boosted</td><td class="num">36.6</td><td class="num">12.8</td><td class="num">1.5</td><td class="num">49.4</td><td class="num">3.97</td></tr>
+<tr class="ft-row"><td class="sys">FASTT-Alternating</td><td class="num">36.6</td><td class="num">17.5</td><td class="num">9.7</td><td class="num">54.1</td><td class="num">53.31</td></tr>
+<tr class="ft-gtitle"><td colspan="6">Oracles</td></tr>
+<tr><td class="sys">Oracle (no tolerance)</td><td class="num">36.6</td><td class="num">23.0</td><td class="num">—</td><td class="num">59.6</td><td class="num">—</td></tr>
+<tr><td class="sys">Oracle (1 word tolerance)</td><td class="num">36.6</td><td class="num">29.5</td><td class="num">—</td><td class="num">66.1</td><td class="num">—</td></tr>
+<tr><td class="sys">Oracle (2 word tolerance)</td><td class="num">36.6</td><td class="num">33.2</td><td class="num">—</td><td class="num">69.8</td><td class="num">—</td></tr>
+</tbody>
+</table>
+<p class="ft-note">VoxPopuli, 32 clips, batch size 1, greedy decoding, one GPU: time per clip to encode all experts, decode the chosen expert(s) and run the selector; end-to-end is their sum. Train selector: fitting it on one 5×2 fold.</p>
+</div>

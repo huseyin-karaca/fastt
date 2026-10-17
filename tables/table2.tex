@@ -1,0 +1,43 @@
+\begin{table*}[t]
+    \centering
+    \caption{Hyperparameter search spaces. Every arm draws 10 configurations with the same sampler and seed on the corpus's hold-out partition; fixed parameters (a single-choice grid) are omitted. The SDT and XGBoost groups collapse the near-identical grids of the FASTT, raw and SelectKBest variants of each base learner into one representative set; $k$ is the SelectKBest feature count.}
+    \label{tab:spaces} \footnotesize \setlength{\tabcolsep}{3pt}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{ll@{\hspace{2em}}ll}
+        \toprule
+        \textbf{Parameter} & \textbf{Search space} & \textbf{Parameter} & \textbf{Search space} \\
+        \midrule
+        \multicolumn{2}{l}{\textit{SDT}} & \multicolumn{2}{l}{\textit{SelectKBest}} \\
+        Transform $\ell_2$ ($\lambda_2$) & {1e-05, 0.001, 0.1} & Num. features ($k$) & {32, 128, 512, 2048} \\
+        \cmidrule(lr){3-4}
+        Bottleneck ratio & {0.05, 0.15, 0.5} & \multicolumn{2}{l}{\textit{ROVER (weighted)}} \\
+        Boosting rounds & {1, 2, 4, 6} & Vote weighting & {inverse\_wer, log\_odds, uniform} \\
+        Trees per round & {4, 8, 16, 24} & Null-arc penalty & {0.25, 0.5} \\
+        \cmidrule(lr){3-4}
+        SDT $\ell_1$ ($\lambda$) & {1e-06, 0.0001, 0.01, 1.0} & \multicolumn{2}{l}{\textit{ROVER (confidence-weighted)}} \\
+        Weight decay & {1e-07, 1e-05, 0.001, 0.1} & Smoothing ($\alpha$) & {0.0, 0.25} \\
+        Batch size & {128, 512, 2048} & Vote weighting & {inverse\_wer, log\_odds, uniform} \\
+        Early-stopping patience & {10, 20, 40} & Weight by confidence & {False, True} \\
+        \cmidrule(lr){1-2}\cmidrule(lr){3-4}
+        \multicolumn{2}{l}{\textit{XGBoost}} & \multicolumn{2}{l}{\textit{CN-MBR}} \\
+        Alternating iterations & {1, 3, 6, 12} & Use confidence & {False, True} \\
+        Transform learning rate & {0.0001, 0.001, 0.01} & Confidence source & {blend, cn, probe} \\
+        \cmidrule(lr){3-4}
+        Transform steps & {25, 100, 400} & \multicolumn{2}{l}{\textit{Score-Fusion}} \\
+        Surrogate learning rate & {0.001, 0.01, 0.1} & Null-arc penalty & {0.25, 1.0, 4.0} \\
+        \cmidrule(lr){3-4}
+        Surrogate steps & {50, 200, 400} & \multicolumn{2}{l}{\textit{Hard-Selector (plain CE)}} \\
+        Transform $\ell_1$ ($\lambda_1$) & {1e-05, 0.001, 0.1} & Smoothing ($\alpha$) & {0.0001, 0.001, \ldots, 1000 (8 values)} \\
+        \cmidrule(lr){3-4}
+        Transform $\ell_2$ ($\lambda_2$) & {1e-05, 0.001, 0.1} & \multicolumn{2}{l}{\textit{Hard-Selector (cost-sensitive CE)}} \\
+        Learning rate & {0.01, 0.03, 0.1, 0.3} & Smoothing ($\alpha$) & {100.0, 1000.0} \\
+        Max depth & {3, 5, 8, 12} & Objective weighting & {length, uniform} \\
+        \cmidrule(lr){3-4}
+        Subsample & {0.6, 0.8, 1.0} & \multicolumn{2}{l}{\textit{QE-Router}} \\
+        Column subsample & {0.1, 0.3, 0.6, 1.0} & Regression target & {errors, wer} \\
+        Bottleneck output ratio & {0.1, 0.3, 1.0} & Num. $\alpha$ values & {8, 16, 40} \\
+         &  & Standardize features & {False, True} \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table*}
