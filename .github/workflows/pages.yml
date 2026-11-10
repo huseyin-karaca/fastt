@@ -1,10 +1,10 @@
-# Build the site and deploy it to GitHub Pages. While the repository is private nothing runs: making it public
-# (the `public` event) deploys the site, and every later push that touches it redeploys it.
+# Publish docs/ to GitHub Pages. docs/ is one static page and its assets, so there is
+# nothing to build. The page is public even while the code repository is private.
 name: pages
 on:
   push:
     branches: [main]
-    paths: ["docs/**", "overrides/**", "mkdocs.yml", ".github/workflows/pages.yml"]
+    paths: ["docs/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
   public:
 
@@ -18,25 +18,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    if: ${{ !github.event.repository.private }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: python -m pip install "mkdocs-material>=9.5" "mkdocs<2"
-      - run: mkdocs build --strict
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
       - id: deployment
         uses: actions/deploy-pages@v4

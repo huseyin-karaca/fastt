@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FASTT: Feature-Adaptive Speech-to-Text Model Selection</title>
+<meta name="description" content="FASTT jointly learns features and an ASR selector, improving WER over the best single model on four of five corpora.">
+<link rel="canonical" href="https://hkaraca.com/fastt/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hkaraca.com/fastt/">
+<meta property="og:title" content="FASTT: Feature-Adaptive Speech-to-Text Model Selection">
+<meta property="og:description" content="The choice is made from the encoder outputs, before any decoder runs; only the chosen expert is decoded.">
+<meta property="og:image" content="https://hkaraca.com/fastt/assets/teaser.png">
+<meta name="citation_title" content="FASTT: Feature-Adaptive Speech-to-Text Model Selection">
+<meta name="citation_author" content="Karaca, Huseyin">
+<meta name="citation_author" content="Namli, A. Samil">
+<meta name="citation_author" content="Kozat, Suleyman S.">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_pdf_url" content="https://hkaraca.com/fastt/assets/fastt.pdf">
+<link rel="icon" href="assets/favicon.svg">
+<style>
+:root{--bg:#fff;--ink:#1c2230;--ink2:#434a5a;--muted:#6b7180;--faint:#9ba1ad;--line:#c9ccd3;--wash:#f6f7f9;--accent:#3355d6;--tint:#eef1fc;--on-accent:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#171a21;--ink:#e7e9ee;--ink2:#c2c7d1;--muted:#9aa0ad;--faint:#6d7484;--line:#3b414d;--wash:#1c2028;--accent:#5b78ee;--tint:#232c4d;--on-accent:#fff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 20px 80px}
+header{text-align:center;margin-bottom:32px}
+.venue{color:var(--muted);font-size:14px;margin:0 0 8px}
+h1{font-size:40px;line-height:1.1;margin:0 0 16px}
+.title{font-size:20px;color:var(--ink2);margin:6px 0 16px}
+.authors{margin:0}.affil{color:var(--muted);margin:0 0 20px}
+.links a{display:inline-flex;align-items:center;gap:8px;margin:4px;padding:6px 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink);text-decoration:none;transition:color .15s,border-color .15s}
+.links a:hover{color:var(--accent);border-color:var(--accent)}
+.ic{width:15px;height:15px;fill:var(--muted);transition:fill .15s}a:hover .ic,button:hover .ic{fill:var(--accent)}
+h2{font-size:24px;margin:48px 0 12px;text-align:center}h3{font-size:18px;margin:28px 0 8px;text-align:center}
+a{color:var(--accent)}
+figure{margin:20px 0}
+.teaser{width:min(1040px,calc(100vw - 40px));margin-left:50%;transform:translateX(-50%)}.teaser figcaption{max-width:720px;margin:8px auto 0;text-align:center}
+.narrow{max-width:440px;margin:20px auto}.narrow .plate{overflow:hidden}.narrow .plate img{width:100%;max-width:100%}
+.plate{display:block;border-radius:8px;overflow:hidden}
+.scroll{overflow-x:auto}
+@media (max-width:600px){.plate{overflow-x:auto}.plate img{width:820px;max-width:none}}figure svg,figure img{width:100%;height:auto;display:block}
+figcaption{color:var(--muted);font-size:15px;margin-top:8px}
+p,figcaption{text-align:center}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}
+tr.ours td{font-weight:600;background:var(--tint)}
+.tall{display:none}@media (max-width:600px){.wide{display:none}.tall{display:block}}
+audio{width:100%;height:36px}
+pre{background:var(--wash);padding:16px;overflow-x:auto;font-size:13px;border-radius:6px}
+button{font:inherit;font-size:14px;padding:4px 12px;border:1px solid var(--line);border-radius:6px;background:none;color:var(--ink);cursor:pointer}
+.bib{position:relative}.bib button{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:6px;background:var(--bg)}.bib button:hover{color:var(--accent);border-color:var(--accent)}
+.f-ink{fill:var(--ink)}.s-ink{stroke:var(--ink)}.f-ink2{fill:var(--ink2)}.s-ink2{stroke:var(--ink2)}
+.f-muted{fill:var(--muted)}.s-muted{stroke:var(--muted)}.f-faint{fill:var(--faint)}.s-faint{stroke:var(--faint)}
+.f-line{fill:var(--line)}.s-line{stroke:var(--line)}.f-bg{fill:var(--bg)}.s-bg{stroke:var(--bg)}
+.f-accent{fill:var(--accent)}.s-accent{stroke:var(--accent)}.f-tint{fill:var(--tint)}.f-on-accent{fill:var(--on-accent)}
+
+.scroll:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.bib pre{padding-top:52px}
+tr.ours th{font-weight:600;background:var(--tint)}
+tbody th{font-weight:400}
+</style>
+</head>
+<body><main>
+<header>
+  <p class="venue">Under review · Expert Systems with Applications</p>
+  <h1>FASTT: Feature-Adaptive Speech-to-Text Model Selection</h1>
+  <p class="authors"><a href="https://hkaraca.com/">Huseyin Karaca</a>, A. Samil Namli, Suleyman S. Kozat</p>
+  <p class="affil">Bilkent University</p>
+  <p class="links"><a href="assets/fastt.pdf"><svg class="ic" viewBox="0 0 384 512" aria-hidden="true"><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"/></svg>Paper</a><a href="https://github.com/huseyin-karaca/fastt" rel="external noopener" target="_blank"><svg class="ic" viewBox="0 0 496 512" aria-hidden="true"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>Code</a><a href="https://huggingface.co/datasets/huseyin-karaca/fastt" rel="external noopener" target="_blank"><svg class="ic" viewBox="0 0 448 512" aria-hidden="true"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"/></svg>Data</a></p>
+</header>
+
+<figure class="teaser">
+<div class="wide"><a class="plate" href="assets/hero.svg"><img src="assets/hero.svg" width="1040" height="511" fetchpriority="high" alt="Three frozen encoders provide pooled features. FASTT jointly trains a feature transform and selector through boosted soft trees or alternating XGBoost updates. The highest expert weight selects the only decoder that runs."></a></div>
+<div class="tall"><a class="plate" href="assets/hero.svg" aria-label="Open the full FASTT hero figure"><svg viewBox="0 0 350 474" role="img" aria-label="All frozen encoders run, their states are mean-pooled, and a jointly trained feature transformation and selector choose one decoder.">
+<g font-family="system-ui, sans-serif" text-anchor="middle">
+<rect x="15" y="8" width="320" height="58" rx="6" class="f-bg s-line"/>
+<text x="175" y="33" font-size="16" class="f-ink">Audio → all frozen expert encoders</text>
+<text x="175" y="54" font-size="13" class="f-muted">Shared encoder passes; no expert is retrained</text>
+<path d="M175 66v26m-5-6 5 6 5-6" fill="none" class="s-accent" stroke-width="2"/>
+<rect x="15" y="94" width="320" height="58" rx="6" class="f-bg s-line"/>
+<text x="175" y="119" font-size="16" class="f-ink">Mean-pooled states + log duration</text>
+<text x="175" y="140" font-size="13" class="f-muted">One feature vector for each clip</text>
+<path d="M175 152v26m-5-6 5 6 5-6" fill="none" class="s-accent" stroke-width="2"/>
+<rect x="15" y="180" width="320" height="106" rx="6" class="f-tint s-accent"/>
+<text x="175" y="207" font-size="18" font-weight="600" class="f-accent">FASTT</text>
+<text x="175" y="232" font-size="16" class="f-ink">Feature transform + selector</text>
+<text x="175" y="257" font-size="13" class="f-ink2">FASTT-Boosted or FASTT-Alternating</text>
+<text x="175" y="277" font-size="13" class="f-muted">Trained jointly on expected WER</text>
+<path d="M175 286v26m-5-6 5 6 5-6" fill="none" class="s-accent" stroke-width="2"/>
+<rect x="15" y="314" width="320" height="58" rx="6" class="f-bg s-line"/>
+<text x="175" y="339" font-size="16" class="f-ink">Highest weight → chosen decoder</text>
+<text x="175" y="360" font-size="13" class="f-muted">Other decoders do not run</text>
+<path d="M175 372v26m-5-6 5 6 5-6" fill="none" class="s-accent" stroke-width="2"/>
+<text x="175" y="424" font-size="16" class="f-ink">Transcript</text>
+<text x="175" y="458" font-size="13" class="f-accent">Open the full hero figure ↗</text>
+</g></svg></a></div>
+<figcaption>FASTT jointly learns the feature transformation and expert choice; only the chosen expert’s decoder runs.</figcaption>
+</figure>
+
+<h2>Abstract</h2>
+<p>Existing approaches to automatic speech recognition (ASR) either rely on a single speech-to-text (STT) model or combine multiple models through computationally expensive ensemble techniques, leading to suboptimal trade-offs between accuracy and efficiency across diverse acoustic conditions. Since different STT models exhibit complementary strengths, selecting the most suitable model for each input can significantly improve transcription accuracy. Here, we introduce FASTT, a feature-adaptive STT selection framework that learns to select the most appropriate pretrained STT model for each input. FASTT jointly learns a task-aligned feature transformation and a lightweight selection function based on acoustic and embedding-derived features, and is trained in an end-to-end manner to minimize a cumulative transcription-error objective. Due to this end-to-end training, we learn both the features that best distinguish between STT models and the selection algorithm so that FASTT outperforms static selection and standard routing methods. Across five English corpora spanning read, parliamentary, meeting, financial and crowd-sourced speech, evaluated with 5×2 cross-validation and paired significance tests, FASTT is significantly better than the best single model on four of the five corpora (p &lt; 0.05) and statistically tied with it on the fifth, and recovers up to 32% of the per-utterance oracle headroom. Because FASTT selects from the members' encoder outputs and decodes only the chosen member, it avoids up to 86% of the decoding time of a decode-all ensemble with a microsecond-scale selector overhead. Furthermore, we show that the selector training procedures converge to first-order stationary points of the training objective under mild smoothness conditions for a fixed feature transformation, and we publicly release the code to support reproducibility.</p>
+
+<h2 id="method">Method</h2>
+<p>Mean-pooled final-layer encoder states and log duration feed a learned gating, linear, low-rank, or nonlinear feature transformation. FASTT-Boosted jointly trains transforms and soft trees; FASTT-Alternating alternates XGBoost refits with transform updates through a linear surrogate. Both minimize expected WER from offline expert errors, so training accounts for how much a wrong choice costs.</p>
+
+<h2 id="results">Results</h2>
+<h3>Lower WER than the best single model on four of five corpora</h3>
+<figure>
+<div class="scroll" role="region" aria-label="Test word error rates by method and corpus" tabindex="0">
+<table>
+<thead><tr><th scope="col">Method</th><th scope="col">LibriSpeech</th><th scope="col">VoxPopuli</th><th scope="col">AMI (SDM)</th><th scope="col">Earnings-22</th><th scope="col">People&#x27;s Speech</th></tr></thead>
+<tbody>
+<tr><th scope="row">Best-Single-Model</th><td>0.0226</td><td>0.1761</td><td>0.6528</td><td>0.4103</td><td>0.4011</td></tr>
+<tr><th scope="row">ROVER (weighted)</th><td>0.0214</td><td>0.1737</td><td>0.6667</td><td>0.4151</td><td>0.3894</td></tr>
+<tr class="ours"><th scope="row">FASTT-Boosted</th><td>0.0224</td><td>0.1735</td><td>0.6221</td><td>0.3901</td><td>0.3860</td></tr>
+<tr class="ours"><th scope="row">FASTT-Alternating</th><td>0.0225</td><td>0.1733</td><td>0.6240</td><td>0.3893</td><td>0.3880</td></tr>
+<tr><th scope="row">Oracle (per utterance)</th><td>0.0140</td><td>0.1494</td><td>0.5584</td><td>0.3452</td><td>0.3491</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption>Test corpus WER, mean over ten folds. FASTT ties the best single model on LibriSpeech (p = 0.737).</figcaption>
+</figure>
+
+<h3>Saves up to 86% of decode-all time</h3>
+<figure>
+<table>
+<thead><tr><th scope="col">System</th><th scope="col">Greedy</th><th scope="col">Beam 5</th><th scope="col">Beam 20</th></tr></thead>
+<tbody>
+<tr><th scope="row">Decode all</th><td>72.9</td><td>948.7</td><td>3927.9</td></tr>
+<tr class="ours"><th scope="row">FASTT-Boosted</th><td>49.4</td><td>133.4</td><td>1158.0</td></tr>
+</tbody>
+</table>
+<figcaption>VoxPopuli, milliseconds per clip, including all encoders and the selector; FASTT takes 133.4 ms versus 948.7 ms at beam 5.</figcaption>
+</figure>
+
+<h2 id="citation">BibTeX</h2>
+<div class="bib"><pre id="bib">@article{karaca2026fastt,
+  title  = {{FASTT}: Feature-Adaptive Speech-to-Text Model Selection},
+  author = {Karaca, Huseyin and Namli, A. Samil and
+            Kozat, Suleyman S.},
+  year   = {2026},
+  note   = {Under review},
+  url    = {https://hkaraca.com/fastt/}
+}</pre><button onclick="navigator.clipboard.writeText(document.getElementById('bib').textContent).then(()=>{this.querySelector('span').textContent='Copied'}).catch(()=>{this.querySelector('span').textContent='Select text to copy'})"><svg class="ic" viewBox="0 0 448 512" aria-hidden="true"><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"/></svg><span>Copy</span></button></div>
+</main></body>
+</html>

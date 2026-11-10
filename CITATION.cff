@@ -4,7 +4,7 @@ title: "FASTT: reproducibility package"
 type: software
 license: Apache-2.0
 repository-code: "https://github.com/huseyin-karaca/fastt"
-url: "https://huseyin-karaca.github.io/fastt"
+url: "https://hkaraca.com/fastt/"
 authors:
   - family-names: Karaca
     given-names: Huseyin

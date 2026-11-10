@@ -1,14 +1,17 @@
-# FASTT
+<div align="center">
 
-**Feature-Adaptive Speech-to-Text Model Selection** — the reproducibility package.
+<h1>FASTT: Feature-Adaptive Speech-to-Text Model Selection</h1>
 
-Huseyin Karaca, A. Samil Namli, Suleyman S. Kozat — Bilkent University, Turk Telekom 6G R&D Laboratory
+**Under review · Expert Systems with Applications**
 
-[![Project page](https://img.shields.io/badge/project%20page-huseyin--karaca.github.io%2Ffastt-6a3fc4)](https://huseyin-karaca.github.io/fastt)
-[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20dataset-fastt-yellow)](https://huggingface.co/datasets/huseyin-karaca/fastt)
+[Huseyin Karaca](https://hkaraca.com/), A. Samil Namli, Suleyman S. Kozat<br>
+Bilkent University
 
-**Project page: [huseyin-karaca.github.io/fastt](https://huseyin-karaca.github.io/fastt)**, with the method, the
-results and the reproducibility report.
+[Paper](https://hkaraca.com/fastt/assets/fastt.pdf) ·
+[Project page](https://hkaraca.com/fastt/) ·
+[Data](https://huggingface.co/datasets/huseyin-karaca/fastt)
+
+</div>
 
 Pretrained speech recognizers have complementary strengths: on any one clip, one of them is often clearly better
 than the others. FASTT picks that expert per clip. It reads the experts' own **encoder states**, averaged over the
@@ -16,7 +19,7 @@ clip, reshapes them with a **learned feature transformation**, and scores the ex
 transformation and the selector are trained together to minimise the **expected word error rate** of the choice. The
 choice is made before any decoder runs, so only the chosen expert's decoder runs.
 
-![FASTT](docs/assets/figures/hero-wide.svg)
+<p align="center"><img src="docs/assets/teaser.png" width="800" alt="FASTT jointly learns a feature transformation and selector; only the chosen expert's decoder runs."></p>
 
 ## Reproduce the paper
 
@@ -61,13 +64,14 @@ notebooks/        the notebooks
 tables/           the paper's tables as LaTeX, written by notebooks/manuscript_tables
 src/fastt/        the configurations (configs), the main experiment (experiment), FASTT and every baseline, the
                   search, the cross-validation, the paired tests, the ablation, the cost, the tables (paper)
-docs/             the documentation site
+docs/             the project page: one static index.html and its assets
+notes/            the long-form notes behind it: method, results, reproduction, data, notebooks, package
 ```
 
 The data — the audio at 16 kHz, every expert's transcripts, word-error counters and pooled encoder states, and the
 stored searches, folds and records — is the Hugging Face dataset
 [`huseyin-karaca/fastt`](https://huggingface.co/datasets/huseyin-karaca/fastt). Each corpus's part carries that
-corpus's licence; see the [documentation](https://huseyin-karaca.github.io/fastt/data/).
+corpus's licence; see [`notes/data.md`](notes/data.md).
 
 ## Citation
 
